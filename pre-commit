@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Check commit for debugger, binding.pry or byebug
+if test "$(git diff --cached | grep '\+.*debugger')"
+then
+  echo "Error: Attempt to commit a debugger line"
+  echo "To skip this check, add the --no-verify option"
+  exit 1
+fi
+
+if test "$(git diff --cached | grep '\+.*binding\.pry')"
+then
+  echo "Error: Attempt to commit a binding.pry line"
+  echo "To skip this check, add the --no-verify option"
+  exit 1
+fi
+
+if test "$(git diff --cached | grep '\+.*byebug')"
+then
+  echo "Error: Attempt to commit a byebug line"
+  echo "To skip this check, add the --no-verify option"
+  exit 1
+fi
